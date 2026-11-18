@@ -1,0 +1,12 @@
+[Unit]
+Description=Dropbear SSH
+After=network.target
+
+[Service]
+Environment=DROPBEAR_PORT=109 DROPBEAR_RECEIVE_WINDOW=65536 DROPBEAR_BANNER=/etc/issue.net
+EnvironmentFile=-/etc/default/dropbear
+ExecStart=/usr/sbin/dropbear -F -E -p $DROPBEAR_PORT -W $DROPBEAR_RECEIVE_WINDOW -b $DROPBEAR_BANNER $DROPBEAR_EXTRA_ARGS -r /etc/dropbear/dropbear_rsa_host_key -r /etc/dropbear/dropbear_ecdsa_host_key
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
