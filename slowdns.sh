@@ -10,7 +10,7 @@ SCRIPT_DIR="$(CDPATH='' cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 fail() {
   echo "Error: $*" >&2
-  exit 1
+  sleep 2
 }
 
 [ "$(id -u)" -eq 0 ] || fail "Jalankan dengan sudo"
