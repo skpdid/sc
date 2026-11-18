@@ -1,0 +1,20 @@
+[Unit]
+Description=XDTunnel Xray Startup - Ketika reboot otomatis user di inbound akan di restore
+# Jalan setelah Xray hidup, tapi unit terpisah (bukan ExecStartPost).
+After=xray.service network-online.target
+Wants=xray.service network-online.target
+# Kalau Xray di-restart, unit ini ikut dijalankan ulang.
+PartOf=xray.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/xdtunnel --restore
+# --restore menunggu API Xray sampai ~60 detik, sisanya untuk baca DB + API call.
+TimeoutStartSec=180
+RemainAfterExit=no
+Nice=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
