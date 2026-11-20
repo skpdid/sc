@@ -1,0 +1,14 @@
+[Unit]
+Description=XDTunnel Websocket Proxy
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/ws/ws -f /ws/config.yaml
+Restart=always
+RestartSec=2
+LimitNOFILE=65535
+Environment=GOMEMLIMIT=350MiB
+
+[Install]
+WantedBy=multi-user.target
