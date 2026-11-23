@@ -3,7 +3,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 MAILTO=""
 
 * * * * * root /usr/local/bin/dropbear-login-sync >/dev/null 2>&1
-*/5 * * * * root /usr/local/bin/xdtunnel --usage >/dev/null 2>&1
-5 0 * * * root /usr/local/bin/xdtunnel --delete --expired >/dev/null 2>&1
+*/5 * * * * root /usr/sbin/xdtunnel --usage >/dev/null 2>&1
+5 0 * * * root /usr/sbin/xdtunnel --delete --expired >/dev/null 2>&1
 
-#@reboot root sleep 30; /usr/local/bin/xdtunnel --restore-xray >>/var/log/xdtunnel-restore.log 2>&1
+#@reboot root sleep 30; /usr/sbin/xdtunnel --restore-xray >>/var/log/xdtunnel-restore.log 2>&1
